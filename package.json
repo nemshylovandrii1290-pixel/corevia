@@ -1,0 +1,39 @@
+{
+  "name": "corevia",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Мій React сайт",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "axios": "^1.13.5",
+    "framer-motion": "^12.34.3",
+    "jwt-decode": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.13.0",
+    "vite-plugin-pwa": "^1.2.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
+    "eslint": "^10.0.0",
+    "prettier": "^3.8.1",
+    "sass": "^1.97.3",
+    "vite": "^7.3.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "license": "MIT"
+}
