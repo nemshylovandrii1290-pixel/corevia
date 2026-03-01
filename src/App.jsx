@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainLayout from '@/app/Layouts/MainLayout'
-import Home from '@/pages/Home/Home'
+import Home from '@/pages/marketing/Home/Home'
 import Dashboard from '@/pages/Dashboard/Dashboard'
 import NotFound from '@/pages/NotFound/NotFound'
 

@@ -1,0 +1,18 @@
+@use '@/styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - 87px);
+  width: 100%;
+  background-image: url('@/assets/images/hero-bg.png');
+
+  padding-top: 120px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @include flex-center;
+
+  text-align: center;
+}
