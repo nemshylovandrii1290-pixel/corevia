@@ -1,14 +1,32 @@
 .sidebar {
-  min-height: 100vh;
   position: sticky;
-  top: 0;
-  padding: 22px 14px;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(20, 27, 45, 0.85);
+  top: 87px;
+  height: calc(100vh - 87px);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 27, 45, 0.9);
+  overflow: hidden;
+  transition: width 0.25s ease, opacity 0.25s ease;
+}
+
+.sidebar--open {
+  width: 320px;
+  opacity: 1;
+}
+
+.sidebar--closed {
+  width: 0;
+  opacity: 0;
+  border-left: 0;
+}
+
+.sidebar__inner {
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px 14px 24px;
 }
 
 .sidebar__title {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-size: 18px;
 }
 
@@ -17,17 +35,23 @@
   gap: 6px;
 }
 
-.sidebar__link {
+.sidebar__link,
+.sidebar__group {
+  text-align: left;
   color: var(--color-text-muted);
   text-decoration: none;
+  border: 0;
+  background: transparent;
   padding: 10px 12px;
   border-radius: 10px;
   transition: 0.2s ease;
+  cursor: pointer;
 }
 
-.sidebar__link:hover {
+.sidebar__link:hover,
+.sidebar__group:hover {
   color: var(--color-text);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .sidebar__link--active {
@@ -35,11 +59,43 @@
   background: rgba(37, 99, 235, 0.25);
 }
 
+.sidebar__submenu {
+  max-height: 0;
+  overflow: hidden;
+  display: grid;
+  gap: 5px;
+  transition: max-height 0.25s ease;
+}
+
+.sidebar__submenu--open {
+  max-height: 240px;
+}
+
+.sidebar__sublink {
+  margin-left: 14px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #b9c3d9;
+}
+
+.sidebar__sublink:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar__sublink--active {
+  color: var(--color-text);
+  background: rgba(37, 99, 235, 0.2);
+}
+
 @media (max-width: 920px) {
   .sidebar {
-    min-height: auto;
-    position: static;
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: fixed;
+    top: 87px;
+    right: 0;
+    z-index: 1001;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.28);
   }
 }

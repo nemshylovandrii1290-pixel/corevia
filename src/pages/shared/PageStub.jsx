@@ -1,4 +1,4 @@
-function PageStub({ title, description, top = 24 }) {
+function PageStub({ title, description, top = 120 }) {
   return (
     <section className="container" style={{ paddingTop: `${top}px`, paddingBottom: '48px' }}>
       <h1 style={{ marginBottom: '10px' }}>{title}</h1>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import logo from '@/assets/logo/corevia-logo-gradient.svg'
 import './Header.scss'
 
-function Header() {
+function Header({ onToggleSidebar, sidebarOpen }) {
   return (
     <header className="header">
       <div className="container header__inner">
@@ -10,11 +10,9 @@ function Header() {
           <img src={logo} alt="Corevia logo" className="logo-img" />
         </Link>
 
-        <nav className="nav">
-          <Link to="/">Головна</Link>
-          <Link to="/dashboard">Послуги</Link>
-          <Link to="/login">Вхід</Link>
-        </nav>
+        <button className="menu-toggle" type="button" onClick={onToggleSidebar}>
+          {sidebarOpen ? 'Сховати меню' : 'Меню'}
+        </button>
       </div>
     </header>
   )

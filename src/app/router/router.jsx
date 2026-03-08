@@ -2,18 +2,22 @@ import { createBrowserRouter } from 'react-router-dom'
 import MainLayout from '../Layouts/MainLayout'
 
 import Home from '@/pages/marketing/Home/Home'
-import Dashboard from '@/pages/Dashboard/Dashboard'
 import NotFound from '@/pages/NotFound/NotFound'
-import DashboardLayout from '@/app/Layouts/DashboardLayout'
 import LoginPage from '@/pages/auth/LoginPage'
 import PcBuildPage from '@/pages/app/PcBuildPage'
 import RepairPage from '@/pages/app/RepairPage'
 import ChatbotsPage from '@/pages/app/ChatbotsPage'
-import WebAppsPage from '@/pages/app/WebAppsPage'
 import ProjectsPage from '@/pages/app/ProjectsPage'
 import BlogPage from '@/pages/app/BlogPage'
 import ContactsPage from '@/pages/app/ContactsPage'
 import FeedbackPage from '@/pages/app/FeedbackPage'
+import ServicesPage from '@/pages/app/ServicesPage'
+import RepairPcPage from '@/pages/app/RepairPcPage'
+import RepairLaptopPage from '@/pages/app/RepairLaptopPage'
+import RepairPhonePage from '@/pages/app/RepairPhonePage'
+import SoftwareAppPage from '@/pages/app/SoftwareAppPage'
+import SoftwareSitePage from '@/pages/app/SoftwareSitePage'
+import SoftwareDirectPage from '@/pages/app/SoftwareDirectPage'
 
 export const router = createBrowserRouter([
   {
@@ -24,50 +28,64 @@ export const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/login',
-        element: <LoginPage />
-      }
-    ]
-  },
-  {
-    path: '/dashboard',
-    element: <DashboardLayout />,
-    children: [
-      {
-        index: true,
-        element: <Dashboard />
+        path: '/services',
+        element: <ServicesPage />
       },
       {
-        path: 'pc-build',
+        path: '/services/pc-build',
         element: <PcBuildPage />
       },
       {
-        path: 'repair',
+        path: '/services/repair',
         element: <RepairPage />
       },
       {
-        path: 'chatbots',
+        path: '/services/repair/pc',
+        element: <RepairPcPage />
+      },
+      {
+        path: '/services/repair/laptop',
+        element: <RepairLaptopPage />
+      },
+      {
+        path: '/services/repair/phone',
+        element: <RepairPhonePage />
+      },
+      {
+        path: '/software/chatbot',
         element: <ChatbotsPage />
       },
       {
-        path: 'web-apps',
-        element: <WebAppsPage />
+        path: '/software/app',
+        element: <SoftwareAppPage />
       },
       {
-        path: 'projects',
+        path: '/software/site',
+        element: <SoftwareSitePage />
+      },
+      {
+        path: '/software/direct',
+        element: <SoftwareDirectPage />
+      },
+      {
+        path: '/projects',
         element: <ProjectsPage />
       },
       {
-        path: 'blog',
+        path: '/blog',
         element: <BlogPage />
       },
       {
-        path: 'contacts',
+        path: '/contacts',
         element: <ContactsPage />
       },
       {
-        path: 'feedback',
+        path: '/feedback',
         element: <FeedbackPage />
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
       }
     ]
   },

@@ -1,36 +1,113 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Sidebar.scss'
 
-const links = [
-  { to: '/dashboard', label: 'Огляд', end: true },
-  { to: '/dashboard/pc-build', label: 'Збірка ПК' },
-  { to: '/dashboard/repair', label: 'Ремонт техніки' },
-  { to: '/dashboard/chatbots', label: 'Чат-боти' },
-  { to: '/dashboard/web-apps', label: 'Сайти та застосунки' },
-  { to: '/dashboard/projects', label: 'Проєкти' },
-  { to: '/dashboard/blog', label: 'Блог' },
-  { to: '/dashboard/contacts', label: 'Контакти' },
-  { to: '/dashboard/feedback', label: 'Зворотний зв\'язок' }
-]
+const sectionItems = {
+  repair: [
+    { to: '/services/repair/pc', label: 'Ремонт ПК' },
+    { to: '/services/repair/laptop', label: 'Ремонт ноутбуків' },
+    { to: '/services/repair/phone', label: 'Ремонт телефонів' }
+  ],
+  software: [
+    { to: '/software/chatbot', label: 'Замовити бота' },
+    { to: '/software/app', label: 'Замовити застосунок' },
+    { to: '/software/site', label: 'Замовити сайт' },
+    { to: '/software/direct', label: 'Написати в дірект' }
+  ],
+  service: [
+    { to: '/services/pc-build', label: 'Замовити збірку ПК' },
+    { to: '/services/repair', label: 'Замовити ремонт' }
+  ]
+}
 
-const Sidebar = () => {
+function Sidebar({ isOpen }) {
+  const [opened, setOpened] = useState({
+    repair: true,
+    software: false,
+    service: false
+  })
+
+  const toggleSection = (name) => {
+    setOpened((prev) => ({ ...prev, [name]: !prev[name] }))
+  }
+
   return (
-    <aside className="sidebar">
-      <h2 className="sidebar__title">Corevia</h2>
-      <nav className="sidebar__nav">
-        {links.map((link) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            end={link.end}
-            className={({ isActive }) =>
-              isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link'
-            }
-          >
-            {link.label}
+    <aside className={`sidebar ${isOpen ? 'sidebar--open' : 'sidebar--closed'}`}>
+      <div className="sidebar__inner">
+        <h2 className="sidebar__title">Навігація</h2>
+
+        <nav className="sidebar__nav">
+          <NavLink to="/" end className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+            Головна
           </NavLink>
-        ))}
-      </nav>
+          <NavLink to="/projects" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+            Проєкти
+          </NavLink>
+          <NavLink to="/blog" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+            Блог
+          </NavLink>
+          <NavLink to="/contacts" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+            Контакти
+          </NavLink>
+          <NavLink to="/feedback" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+            Зворотний зв’язок
+          </NavLink>
+          <NavLink to="/login" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+            Вхід
+          </NavLink>
+
+          <button type="button" className="sidebar__group" onClick={() => toggleSection('repair')}>
+            Ремонт техніки
+          </button>
+          <div className={`sidebar__submenu ${opened.repair ? 'sidebar__submenu--open' : ''}`}>
+            {sectionItems.repair.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? 'sidebar__sublink sidebar__sublink--active' : 'sidebar__sublink'
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <button type="button" className="sidebar__group" onClick={() => toggleSection('software')}>
+            Замовити софт
+          </button>
+          <div className={`sidebar__submenu ${opened.software ? 'sidebar__submenu--open' : ''}`}>
+            {sectionItems.software.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? 'sidebar__sublink sidebar__sublink--active' : 'sidebar__sublink'
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <button type="button" className="sidebar__group" onClick={() => toggleSection('service')}>
+            Сервіс
+          </button>
+          <div className={`sidebar__submenu ${opened.service ? 'sidebar__submenu--open' : ''}`}>
+            {sectionItems.service.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? 'sidebar__sublink sidebar__sublink--active' : 'sidebar__sublink'
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        </nav>
+      </div>
     </aside>
   )
 }
