@@ -1,6 +1,8 @@
 ﻿.sidebar {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 87px;
+  right: 0;
+  z-index: 1001;
   height: calc(100vh - 87px);
   border-left: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(20, 27, 45, 0.92);
@@ -29,7 +31,6 @@
 .sidebar__nav {
   display: grid;
   gap: 6px;
-  overflow-y: auto;
 }
 
 .sidebar__link,
@@ -110,13 +111,7 @@
 }
 
 @media (max-width: 920px) {
-  .sidebar {
-    position: fixed;
-    top: 87px;
-    right: 0;
-    z-index: 1001;
-    height: calc(100vh - 87px);
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.28);
+  .sidebar--open {
+    width: min(320px, 88vw);
   }
 }

@@ -13,17 +13,19 @@ function MainLayout() {
   }
 
   return (
-    <div className="layout">
-      <Header onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
+    <div className={`layout ${sidebarOpen ? 'layout--menu-open' : 'layout--menu-closed'}`}>
+      <Sidebar isOpen={sidebarOpen} />
 
-      <div className={`layout__body ${sidebarOpen ? 'layout__body--open' : 'layout__body--closed'}`}>
-        <main className="content">
-          <Outlet />
-        </main>
-        <Sidebar isOpen={sidebarOpen} />
+      <div className="layout__frame">
+        <Header onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
+
+        <div className="layout__scroll">
+          <main className="layout__content">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
