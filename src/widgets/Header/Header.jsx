@@ -11,7 +11,7 @@ function Header() {
         </Link>
 
         <nav className="nav">
-          <Link to="/app">Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </nav>
       </div>
     </header>
