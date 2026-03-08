@@ -1,5 +1,5 @@
-@use './variables';
-@use './mixins';
+﻿@use './variables';
+@use './mixins' as m;
 @use './reset';
 
 * {
@@ -8,23 +8,23 @@
   box-sizing: border-box;
 }
 
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
-}
-
 html,
 body,
 #root {
   height: 100%;
 }
 
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
 .layout {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  @include m.flex-container(flex-start, stretch, column);
 }
 
 .content {
@@ -32,7 +32,5 @@ body,
 }
 
 .container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 20px;
+  @include m.container;
 }

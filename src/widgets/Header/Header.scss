@@ -1,40 +1,29 @@
-﻿.header {
+﻿@use '@/styles/mixins' as m;
+
+.header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 87px;
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
-  background: linear-gradient(
-    180deg,
-    rgba(5, 12, 28, 0.84) 0%,
-    rgba(7, 16, 36, 0.72) 100%
-  );
+  height: var(--header-height);
+  backdrop-filter: blur(var(--blur-lg)) saturate(130%);
+  -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(130%);
+  background: linear-gradient(180deg, rgba(5, 12, 28, 0.84) 0%, rgba(7, 16, 36, 0.72) 100%);
   border-bottom: 1px solid rgba(125, 166, 255, 0.2);
-  box-shadow: 0 8px 24px rgba(2, 7, 18, 0.35);
+  box-shadow: var(--shadow-soft);
   isolation: isolate;
 
   &::after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
+    inset: auto 0 -1px;
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0),
-      rgba(91, 167, 255, 0.55),
-      rgba(0, 0, 0, 0)
-    );
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(91, 167, 255, 0.55), rgba(0, 0, 0, 0));
     pointer-events: none;
   }
 
   &__inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     height: 100%;
+    @include m.flex-container(space-between, center);
   }
 }
 
@@ -42,30 +31,30 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+
+  &:hover img {
+    transform: scale(1.05);
+  }
 }
 
 .logo-img {
   height: 40px;
   object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-.logo:hover img {
-  transform: scale(1.05);
+  transition: transform var(--transition-fast);
 }
 
 .menu-toggle {
   border: 1px solid rgba(145, 180, 255, 0.3);
   color: var(--color-text);
   background: rgba(128, 165, 255, 0.1);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   padding: 8px 14px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 
-.menu-toggle:hover {
-  background: rgba(128, 165, 255, 0.18);
-  border-color: rgba(165, 196, 255, 0.45);
-  transform: translateY(-1px);
+  &:hover {
+    background: rgba(128, 165, 255, 0.18);
+    border-color: rgba(165, 196, 255, 0.45);
+    transform: translateY(-1px);
+  }
 }

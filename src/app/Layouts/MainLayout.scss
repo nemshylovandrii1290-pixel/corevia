@@ -1,33 +1,34 @@
-﻿.app-shell {
+﻿@use '@/styles/mixins' as m;
+
+.app-shell {
   min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 0;
   align-items: stretch;
   background: var(--color-bg);
-  transition: grid-template-columns 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
+  transition: grid-template-columns var(--transition-panel);
 
-.app-shell--menu-open {
-  grid-template-columns: minmax(0, 1fr) 320px;
-}
+  &--menu-open {
+    grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+  }
 
-.app-shell--menu-closed {
-  grid-template-columns: minmax(0, 1fr) 0;
-}
+  &--menu-closed {
+    grid-template-columns: minmax(0, 1fr) 0;
+  }
 
-.app-shell__frame {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
+  &__frame {
+    min-width: 0;
+    @include m.flex-container(flex-start, stretch, column);
+  }
 
-.app-shell__content {
-  min-height: calc(100vh - 87px - 84px);
-}
+  &__content {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  }
 
-@media (max-width: 920px) {
-  .app-shell--menu-open,
-  .app-shell--menu-closed {
-    grid-template-columns: minmax(0, 1fr);
+  @include m.mq-down(lg) {
+    &--menu-open,
+    &--menu-closed {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 }
