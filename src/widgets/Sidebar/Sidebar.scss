@@ -4,14 +4,14 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  border-left: 1px solid rgba(115, 155, 255, 0.24);
-  background: linear-gradient(180deg, rgba(16, 30, 56, 0.78) 0%, rgba(14, 24, 45, 0.88) 100%);
-  backdrop-filter: blur(var(--blur-md)) saturate(120%);
-  -webkit-backdrop-filter: blur(var(--blur-md)) saturate(120%);
   overflow: hidden;
-  box-shadow: inset 1px 0 0 rgba(140, 178, 255, 0.2), var(--shadow-side);
-  transition: width var(--transition-panel), opacity 0.3s ease;
-  isolation: isolate;
+  @include m.glass-panel(
+    rgba(16, 30, 56, 0.78),
+    rgba(14, 24, 45, 0.88),
+    1px solid rgba(115, 155, 255, 0.24),
+    var(--blur-md),
+    inset 1px 0 0 rgba(140, 178, 255, 0.2), var(--shadow-side)
+  );
 
   &::before {
     content: '';
@@ -39,6 +39,10 @@
     height: 100%;
     padding: 16px 14px;
     @include m.flex-container(flex-start, stretch, column);
+  }
+
+  &__close {
+    display: none;
   }
 
   &__nav {
@@ -122,11 +126,27 @@
     }
   }
 
-  @include m.mq-down(lg) {
+  @include m.mq-down(tablet) {
     position: fixed;
     top: 0;
     right: 0;
     z-index: 1100;
+
+    &__close {
+      display: block;
+      margin-bottom: 10px;
+      border: 1px solid rgba(145, 180, 255, 0.35);
+      color: var(--color-text);
+      background: rgba(128, 165, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+
+      &:hover {
+        background: rgba(128, 165, 255, 0.2);
+      }
+    }
 
     &--open {
       width: min(var(--sidebar-width), 88vw);

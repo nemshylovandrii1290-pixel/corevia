@@ -5,12 +5,13 @@
   top: 0;
   z-index: 1000;
   height: var(--header-height);
-  backdrop-filter: blur(var(--blur-lg)) saturate(130%);
-  -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(130%);
-  background: linear-gradient(180deg, rgba(5, 12, 28, 0.84) 0%, rgba(7, 16, 36, 0.72) 100%);
-  border-bottom: 1px solid rgba(125, 166, 255, 0.2);
-  box-shadow: var(--shadow-soft);
-  isolation: isolate;
+  @include m.glass-panel(
+    rgba(5, 12, 28, 0.84),
+    rgba(7, 16, 36, 0.72),
+    1px solid rgba(125, 166, 255, 0.2),
+    var(--blur-lg),
+    var(--shadow-soft)
+  );
 
   &::after {
     content: '';

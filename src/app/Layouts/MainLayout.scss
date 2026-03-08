@@ -25,10 +25,24 @@
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
   }
 
-  @include m.mq-down(lg) {
+  &__backdrop {
+    display: none;
+  }
+
+  @include m.mq-down(tablet) {
     &--menu-open,
     &--menu-closed {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      border: 0;
+      background: rgba(1, 6, 16, 0.55);
+      z-index: 1090;
+      cursor: pointer;
     }
   }
 }
