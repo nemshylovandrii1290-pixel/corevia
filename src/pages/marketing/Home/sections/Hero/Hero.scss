@@ -1,0 +1,53 @@
+@use '@/styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - 87px);
+  width: 100%;
+  background-image: url('@/assets/images/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(11, 15, 25, 0.78), rgba(11, 15, 25, 0.38));
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.hero__eyebrow {
+  color: #93c5fd;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 6vw, 54px);
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+
+.hero__text {
+  font-size: 18px;
+  color: #d3d9e8;
+  margin-bottom: 24px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
