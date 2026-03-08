@@ -1,7 +1,9 @@
-.layout__body {
+﻿.layout__body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
   align-items: start;
+  min-height: calc(100vh - 87px);
+  margin-top: 87px;
   transition: grid-template-columns 0.25s ease;
 }
 
@@ -10,7 +12,7 @@
 }
 
 .content {
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 87px - 84px);
 }
 
 @media (max-width: 920px) {

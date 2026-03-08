@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+п»їimport { Link } from 'react-router-dom'
 import './Hero.scss'
 
 const Hero = () => {
@@ -7,17 +7,17 @@ const Hero = () => {
       <div className="hero__overlay" />
       <div className="container hero__content">
         <p className="hero__eyebrow">Corevia</p>
-        <h1>Сервіс і розробка для вашого бізнесу та техніки</h1>
+        <h1>РЎРµСЂРІС–СЃ С– СЂРѕР·СЂРѕР±РєР° РґР»СЏ РІР°С€РѕРіРѕ Р±С–Р·РЅРµСЃСѓ С‚Р° С‚РµС…РЅС–РєРё</h1>
         <p className="hero__text">
-          Ремонт ПК, ноутбуків і телефонів, збірка ПК під задачі, розробка сайтів, чат-ботів та
-          невеликих застосунків. Усе в одному місці.
+          Р РµРјРѕРЅС‚ РџРљ, РЅРѕСѓС‚Р±СѓРєС–РІ С– С‚РµР»РµС„РѕРЅС–РІ, Р·Р±С–СЂРєР° РџРљ РїС–Рґ Р·Р°РґР°С‡С–, СЂРѕР·СЂРѕР±РєР° СЃР°Р№С‚С–РІ, С‡Р°С‚-Р±РѕС‚С–РІ С‚Р°
+          РЅРµРІРµР»РёРєРёС… Р·Р°СЃС‚РѕСЃСѓРЅРєС–РІ. РЈСЃРµ РІ РѕРґРЅРѕРјСѓ РјС–СЃС†С–.
         </p>
         <div className="hero__actions">
           <Link to="/services" className="btn-primary">
-            Перейти до послуг
+            РџРµСЂРµР№С‚Рё РґРѕ РїРѕСЃР»СѓРі
           </Link>
           <Link to="/contacts" className="btn-secondary">
-            Зв’язатися
+            Р—РІ&apos;СЏР·Р°С‚РёСЃСЏ
           </Link>
         </div>
       </div>

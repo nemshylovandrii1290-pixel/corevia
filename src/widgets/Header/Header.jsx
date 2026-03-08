@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+п»їimport { Link } from 'react-router-dom'
 import logo from '@/assets/logo/corevia-logo-gradient.svg'
 import './Header.scss'
 
@@ -11,7 +11,7 @@ function Header({ onToggleSidebar, sidebarOpen }) {
         </Link>
 
         <button className="menu-toggle" type="button" onClick={onToggleSidebar}>
-          {sidebarOpen ? 'Сховати меню' : 'Меню'}
+          {sidebarOpen ? 'РЎС…РѕРІР°С‚Рё РјРµРЅСЋ' : 'РњРµРЅСЋ'}
         </button>
       </div>
     </header>
