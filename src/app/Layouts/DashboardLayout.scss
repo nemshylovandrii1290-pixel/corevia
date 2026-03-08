@@ -1,16 +1,16 @@
+﻿@use '@/styles/mixins' as m;
+
 .dashboard-layout {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   background: var(--color-bg);
+
+  @include m.mq-down(lg) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .dashboard-content {
   padding: 20px;
-}
-
-@media (max-width: 920px) {
-  .dashboard-layout {
-    grid-template-columns: 1fr;
-  }
 }

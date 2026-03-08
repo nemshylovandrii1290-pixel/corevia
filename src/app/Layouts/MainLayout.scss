@@ -1,23 +1,48 @@
-﻿.layout__body {
+﻿@use '@/styles/mixins' as m;
+
+.app-shell {
+  min-height: 100vh;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  align-items: start;
-  min-height: calc(100vh - 87px);
-  margin-top: 87px;
-  transition: grid-template-columns 0.25s ease;
-}
-
-.layout__body--closed {
   grid-template-columns: minmax(0, 1fr) 0;
-}
+  align-items: stretch;
+  background: var(--color-bg);
+  transition: grid-template-columns var(--transition-panel);
 
-.content {
-  min-height: calc(100vh - 87px - 84px);
-}
+  &--menu-open {
+    grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+  }
 
-@media (max-width: 920px) {
-  .layout__body,
-  .layout__body--closed {
-    grid-template-columns: 1fr;
+  &--menu-closed {
+    grid-template-columns: minmax(0, 1fr) 0;
+  }
+
+  &__frame {
+    min-width: 0;
+    @include m.flex-container(flex-start, stretch, column);
+  }
+
+  &__content {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  }
+
+  &__backdrop {
+    display: none;
+  }
+
+  @include m.mq-down(tablet) {
+    &--menu-open,
+    &--menu-closed {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      border: 0;
+      background: rgba(1, 6, 16, 0.55);
+      z-index: 1090;
+      cursor: pointer;
+    }
   }
 }

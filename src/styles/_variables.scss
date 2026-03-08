@@ -1,18 +1,32 @@
-:root {
-  /* COLORS */
+﻿:root {
+  /* Colors */
   --color-bg: #0b0f19;
+  --color-bg-secondary: #101829;
   --color-surface: #141b2d;
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
   --color-text: #e5e7eb;
   --color-text-muted: #94a3b8;
 
-  /* SPACING */
+  /* Sizing */
   --container-width: 1200px;
+  --header-height: 87px;
+  --footer-height: 84px;
+  --sidebar-width: 320px;
 
-  /* RADIUS */
-  --radius-md: 12px;
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
 
-  --header-height: 120px;
-  --container-width: 1200px;
+  /* Effects */
+  --blur-md: 12px;
+  --blur-lg: 14px;
+  --border-soft: 1px solid rgba(255, 255, 255, 0.08);
+  --shadow-soft: 0 8px 24px rgba(2, 7, 18, 0.35);
+  --shadow-side: -12px 0 28px rgba(3, 9, 22, 0.32);
+
+  /* Motion */
+  --transition-fast: 0.2s ease;
+  --transition-panel: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -1,11 +1,54 @@
-@mixin flex-center {
+﻿@use 'sass:list';
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 920px,
+  tablet: 1024px,
+  xl: 1200px
+);
+
+@mixin flex-container($justify: center, $align: center, $direction: row, $wrap: nowrap) {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+  @include flex-container(center, center);
 }
 
 @mixin container {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 20px;
+}
+
+@mixin glass-panel($from, $to, $border, $blur: var(--blur-md), $shadows...) {
+  backdrop-filter: blur($blur) saturate(120%);
+  -webkit-backdrop-filter: blur($blur) saturate(120%);
+  background: linear-gradient(180deg, $from 0%, $to 100%);
+  border: $border;
+  isolation: isolate;
+
+  @if list.length($shadows) > 0 {
+    box-shadow: $shadows;
+  } @else {
+    box-shadow: none;
+  }
+}
+
+@mixin mq-down($breakpoint) {
+  @media (max-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mq-up($breakpoint) {
+  @media (min-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
 }

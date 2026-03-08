@@ -1,29 +1,55 @@
-﻿import { useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '@/widgets/Header/Header'
 import Footer from '@/widgets/Footer/Footer'
 import Sidebar from '@/widgets/Sidebar/Sidebar'
 import './MainLayout.scss'
 
+const COMPACT_QUERY = '(max-width: 1024px)'
+
 function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [isCompact, setIsCompact] = useState(() => window.matchMedia(COMPACT_QUERY).matches)
+
+  useEffect(() => {
+    const media = window.matchMedia(COMPACT_QUERY)
+
+    const onChange = (event) => {
+      setIsCompact(event.matches)
+      if (event.matches) {
+        setSidebarOpen(false)
+      }
+    }
+
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
 
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev)
   }
 
-  return (
-    <div className="layout">
-      <Header onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
+  const closeSidebar = () => {
+    setSidebarOpen(false)
+  }
 
-      <div className={`layout__body ${sidebarOpen ? 'layout__body--open' : 'layout__body--closed'}`}>
-        <main className="content">
+  return (
+    <div className={`app-shell ${sidebarOpen ? 'app-shell--menu-open' : 'app-shell--menu-closed'}`}>
+      <div className="app-shell__frame">
+        <Header onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
+
+        <main className="app-shell__content">
           <Outlet />
         </main>
-        <Sidebar isOpen={sidebarOpen} />
+
+        <Footer />
       </div>
 
-      <Footer />
+      {isCompact && sidebarOpen && (
+        <button type="button" className="app-shell__backdrop" aria-label="Закрити меню" onClick={closeSidebar} />
+      )}
+
+      <Sidebar isOpen={sidebarOpen} showCloseButton={isCompact} onClose={closeSidebar} />
     </div>
   )
 }

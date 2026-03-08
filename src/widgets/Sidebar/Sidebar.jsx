@@ -16,18 +16,35 @@ const menu = {
   ]
 }
 
-function Sidebar({ isOpen }) {
+function Sidebar({ isOpen, showCloseButton, onClose }) {
   const [opened, setOpened] = useState({ service: true, software: false })
 
   const toggle = (section) => {
     setOpened((prev) => ({ ...prev, [section]: !prev[section] }))
   }
 
+  const handleNavigate = () => {
+    if (showCloseButton) {
+      onClose()
+    }
+  }
+
   return (
     <aside className={`sidebar ${isOpen ? 'sidebar--open' : 'sidebar--closed'}`}>
       <div className="sidebar__inner">
+        {showCloseButton && (
+          <button type="button" className="sidebar__close" onClick={onClose}>
+            Закрити меню
+          </button>
+        )}
+
         <nav className="sidebar__nav">
-          <NavLink to="/" end className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+          <NavLink
+            to="/"
+            end
+            onClick={handleNavigate}
+            className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
+          >
             Home
           </NavLink>
 
@@ -39,6 +56,7 @@ function Sidebar({ isOpen }) {
               <NavLink
                 key={item.to}
                 to={item.to}
+                onClick={handleNavigate}
                 className={({ isActive }) => (isActive ? 'sidebar__sublink sidebar__sublink--active' : 'sidebar__sublink')}
               >
                 {item.label}
@@ -54,6 +72,7 @@ function Sidebar({ isOpen }) {
               <NavLink
                 key={item.to}
                 to={item.to}
+                onClick={handleNavigate}
                 className={({ isActive }) => (isActive ? 'sidebar__sublink sidebar__sublink--active' : 'sidebar__sublink')}
               >
                 {item.label}
@@ -61,19 +80,35 @@ function Sidebar({ isOpen }) {
             ))}
           </div>
 
-          <NavLink to="/projects" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+          <NavLink
+            to="/projects"
+            onClick={handleNavigate}
+            className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
+          >
             Проєкти
           </NavLink>
-          <NavLink to="/blog" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+          <NavLink
+            to="/blog"
+            onClick={handleNavigate}
+            className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
+          >
             Блог
           </NavLink>
-          <NavLink to="/contacts" className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}>
+          <NavLink
+            to="/contacts"
+            onClick={handleNavigate}
+            className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
+          >
             Контакти
           </NavLink>
         </nav>
 
         <div className="sidebar__bottom">
-          <NavLink to="/register" className={({ isActive }) => (isActive ? 'sidebar__cta sidebar__cta--active' : 'sidebar__cta')}>
+          <NavLink
+            to="/register"
+            onClick={handleNavigate}
+            className={({ isActive }) => (isActive ? 'sidebar__cta sidebar__cta--active' : 'sidebar__cta')}
+          >
             Зареєструватися
           </NavLink>
         </div>
