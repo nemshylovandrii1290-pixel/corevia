@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom'
 import Sidebar from '@/widgets/Sidebar/Sidebar'
+import './DashboardLayout.scss'
 
 const DashboardLayout = () => {
   return (
-    <div className="dashboard-layout" style={{ display: 'flex' }}>
+    <div className="dashboard-layout">
       <Sidebar />
-      <div className="dashboard-content" style={{ flex: 1 }}>
+      <main className="dashboard-content">
         <Outlet />
-      </div>
+      </main>
     </div>
   )
 }
