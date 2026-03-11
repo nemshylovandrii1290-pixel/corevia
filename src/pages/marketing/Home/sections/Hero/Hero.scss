@@ -2,7 +2,7 @@
 
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 16%, rgba(56, 189, 248, 0.16), transparent 18%),
@@ -58,10 +58,27 @@
 .hero__content {
   position: relative;
   z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
   min-height: calc(100vh - var(--header-height));
-  padding-top: clamp(340px, 54vh, 520px);
+  padding-top: clamp(380px, 58vh, 560px);
   padding-bottom: 88px;
   text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: auto -32px -32px;
+    top: clamp(280px, 44vh, 420px);
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    border-radius: 32px;
+  }
 }
 
 .hero__eyebrow {
@@ -92,7 +109,7 @@
 
 @include m.mq-down(tablet) {
   .hero__content {
-    padding-top: clamp(320px, 48vh, 440px);
+    padding-top: clamp(340px, 52vh, 460px);
     padding-bottom: 72px;
   }
 
@@ -119,12 +136,17 @@
 
 @include m.mq-down(md) {
   .hero {
-    min-height: calc(100svh - var(--header-height));
+    height: calc(100svh - var(--header-height));
   }
 
   .hero__content {
     min-height: calc(100svh - var(--header-height));
-    padding-top: clamp(260px, 42vh, 360px);
+    padding-top: clamp(300px, 48vh, 380px);
     padding-bottom: 56px;
+
+    &::before {
+      inset: auto -16px -24px;
+      top: clamp(220px, 38vh, 300px);
+    }
   }
 }
