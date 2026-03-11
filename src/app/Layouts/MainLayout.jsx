@@ -8,7 +8,7 @@ import './MainLayout.scss'
 const COMPACT_QUERY = '(max-width: 1024px)'
 
 function MainLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isCompact, setIsCompact] = useState(() => window.matchMedia(COMPACT_QUERY).matches)
 
   useEffect(() => {

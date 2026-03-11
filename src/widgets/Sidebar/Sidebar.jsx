@@ -3,21 +3,32 @@ import { NavLink } from 'react-router-dom'
 import './Sidebar.scss'
 
 const menu = {
-  service: [
-    { to: '/services/pc-build', label: 'Замовити збірку ПК' },
-    { to: '/services/repair/pc', label: 'Ремонт ПК' },
-    { to: '/services/repair/phone', label: 'Ремонт телефона' },
-    { to: '/services/repair/laptop', label: 'Ремонт ноутбука' }
-  ],
   software: [
-    { to: '/software/chatbot', label: 'Замовити бота' },
-    { to: '/software/site', label: 'Замовити сайт' },
-    { to: '/software/app', label: 'Замовити програму' }
+    { to: '/software/web-applications', label: 'Web Applications' },
+    { to: '/software/custom-software', label: 'Custom Software' },
+    { to: '/software/saas-development', label: 'SaaS Development' },
+    { to: '/software/api-development', label: 'API Development' }
+  ],
+  automation: [
+    { to: '/automation/business-automation', label: 'Business Automation' },
+    { to: '/automation/workflow-automation', label: 'Workflow Automation' },
+    { to: '/automation/chat-bots', label: 'Telegram / Chat Bots' },
+    { to: '/automation/ai-integration', label: 'AI Integration' }
+  ],
+  systems: [
+    { to: '/systems/crm-systems', label: 'CRM Systems' },
+    { to: '/systems/booking-systems', label: 'Booking Systems' },
+    { to: '/systems/admin-panels', label: 'Admin Panels' },
+    { to: '/systems/dashboards', label: 'Dashboards' }
   ]
 }
 
 function Sidebar({ isOpen, showCloseButton, onClose }) {
-  const [opened, setOpened] = useState({ service: true, software: false })
+  const [opened, setOpened] = useState({
+    software: false,
+    automation: false,
+    systems: false
+  })
 
   const toggle = (section) => {
     setOpened((prev) => ({ ...prev, [section]: !prev[section] }))
@@ -34,7 +45,7 @@ function Sidebar({ isOpen, showCloseButton, onClose }) {
       <div className="sidebar__inner">
         {showCloseButton && (
           <button type="button" className="sidebar__close" onClick={onClose}>
-            Закрити меню
+            Close menu
           </button>
         )}
 
@@ -48,11 +59,11 @@ function Sidebar({ isOpen, showCloseButton, onClose }) {
             Home
           </NavLink>
 
-          <button type="button" className="sidebar__group" onClick={() => toggle('service')}>
-            Сервіс
+          <button type="button" className="sidebar__group" onClick={() => toggle('software')}>
+            Software
           </button>
-          <div className={`sidebar__submenu ${opened.service ? 'sidebar__submenu--open' : ''}`}>
-            {menu.service.map((item) => (
+          <div className={`sidebar__submenu ${opened.software ? 'sidebar__submenu--open' : ''}`}>
+            {menu.software.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -64,11 +75,27 @@ function Sidebar({ isOpen, showCloseButton, onClose }) {
             ))}
           </div>
 
-          <button type="button" className="sidebar__group" onClick={() => toggle('software')}>
-            Замовити софт
+          <button type="button" className="sidebar__group" onClick={() => toggle('automation')}>
+            Automation
           </button>
-          <div className={`sidebar__submenu ${opened.software ? 'sidebar__submenu--open' : ''}`}>
-            {menu.software.map((item) => (
+          <div className={`sidebar__submenu ${opened.automation ? 'sidebar__submenu--open' : ''}`}>
+            {menu.automation.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                onClick={handleNavigate}
+                className={({ isActive }) => (isActive ? 'sidebar__sublink sidebar__sublink--active' : 'sidebar__sublink')}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <button type="button" className="sidebar__group" onClick={() => toggle('systems')}>
+            Systems
+          </button>
+          <div className={`sidebar__submenu ${opened.systems ? 'sidebar__submenu--open' : ''}`}>
+            {menu.systems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -85,21 +112,28 @@ function Sidebar({ isOpen, showCloseButton, onClose }) {
             onClick={handleNavigate}
             className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
           >
-            Проєкти
+            Projects
           </NavLink>
           <NavLink
             to="/blog"
             onClick={handleNavigate}
             className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
           >
-            Блог
+            Blog
           </NavLink>
           <NavLink
-            to="/contacts"
+            to="/about"
             onClick={handleNavigate}
             className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
           >
-            Контакти
+            About
+          </NavLink>
+          <NavLink
+            to="/contact"
+            onClick={handleNavigate}
+            className={({ isActive }) => (isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link')}
+          >
+            Contact
           </NavLink>
         </nav>
 
@@ -109,7 +143,7 @@ function Sidebar({ isOpen, showCloseButton, onClose }) {
             onClick={handleNavigate}
             className={({ isActive }) => (isActive ? 'sidebar__cta sidebar__cta--active' : 'sidebar__cta')}
           >
-            Зареєструватися
+            Register
           </NavLink>
         </div>
       </div>
