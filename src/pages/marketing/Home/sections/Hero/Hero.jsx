@@ -7,14 +7,12 @@ const HeroScene = lazy(() => import('./HeroScene'))
 const Hero = () => {
   return (
     <section className="hero">
-      <div className="hero__viewport">
-        <div className="hero__ambient hero__ambient--left" aria-hidden="true" />
-        <div className="hero__ambient hero__ambient--right" aria-hidden="true" />
-        <div className="hero__scene-wrap">
-          <Suspense fallback={<div className="hero__scene-fallback" aria-hidden="true" />}>
-            <HeroScene />
-          </Suspense>
-        </div>
+      <div className="hero__scene" aria-hidden="true">
+        <div className="hero__ambient hero__ambient--left" />
+        <div className="hero__ambient hero__ambient--right" />
+        <Suspense fallback={<div className="hero__scene-fallback" />}>
+          <HeroScene />
+        </Suspense>
       </div>
 
       <div className="container hero__content">
