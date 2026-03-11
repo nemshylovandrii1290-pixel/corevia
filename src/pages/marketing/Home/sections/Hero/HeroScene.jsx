@@ -11,6 +11,7 @@ const PLANET_SCALE = 0.8
 const NODE_COUNT = 70
 const PARTICLE_COUNT = 200
 const CONNECTION_THRESHOLD = 1.2
+const NETWORK_RADIUS = PLANET_RADIUS + 0.08
 
 function randomPointOnSphere(radius) {
   const u = Math.random()
@@ -42,7 +43,7 @@ function createParticlePositions() {
 }
 
 function createNodeNetwork() {
-  const nodes = Array.from({ length: NODE_COUNT }, () => randomPointOnSphere(PLANET_RADIUS + 0.02))
+  const nodes = Array.from({ length: NODE_COUNT }, () => randomPointOnSphere(NETWORK_RADIUS))
   const connectionPoints = []
 
   for (let i = 0; i < nodes.length; i += 1) {
@@ -98,9 +99,9 @@ function PlanetScene() {
       <pointLight position={[4, 3, 4]} intensity={1.8} color="#4fd1ff" />
       <pointLight position={[-4, -2, -4]} intensity={0.8} color="#3b82f6" />
 
-      <Stars radius={40} depth={40} count={400} factor={3} saturation={0} fade speed={0.35} />
+      <Stars radius={80} depth={50} count={500} factor={3} saturation={0} fade speed={0.35} />
 
-      <group position={[0, 1.2, 0]} scale={PLANET_SCALE}>
+      <group position={[0, 0, 0]} scale={PLANET_SCALE}>
         <group ref={planetRef}>
           <mesh>
             <sphereGeometry args={[1.8, 48, 48]} />
@@ -138,24 +139,36 @@ function PlanetScene() {
             />
           </mesh>
 
-          <lineSegments>
-            <bufferGeometry>
-              <bufferAttribute
-                attach="attributes-position"
-                array={network.connections}
-                count={network.connections.length / 3}
-                itemSize={3}
+          <group renderOrder={2}>
+            <lineSegments renderOrder={2}>
+              <bufferGeometry>
+                <bufferAttribute
+                  attach="attributes-position"
+                  array={network.connections}
+                  count={network.connections.length / 3}
+                  itemSize={3}
+                />
+              </bufferGeometry>
+              <lineBasicMaterial
+                color="#38bdf8"
+                transparent
+                opacity={0.6}
+                depthWrite={false}
+                toneMapped={false}
               />
-            </bufferGeometry>
-            <lineBasicMaterial color="#38bdf8" transparent opacity={0.6} toneMapped={false} />
-          </lineSegments>
+            </lineSegments>
 
-          {network.nodes.map((position, index) => (
-            <mesh key={index} position={position.toArray()}>
-              <sphereGeometry args={[0.035, 8, 8]} />
-              <meshBasicMaterial color="#38bdf8" toneMapped={false} />
-            </mesh>
-          ))}
+            {network.nodes.map((position, index) => (
+              <mesh key={index} position={position.toArray()} renderOrder={2}>
+                <sphereGeometry args={[0.035, 8, 8]} />
+                <meshBasicMaterial
+                  color="#38bdf8"
+                  depthWrite={false}
+                  toneMapped={false}
+                />
+              </mesh>
+            ))}
+          </group>
         </group>
 
         <mesh ref={ribbonRef} rotation={[1.18, 0.12, 0]} renderOrder={1}>
@@ -214,7 +227,7 @@ function HeroScene() {
   return (
     <Canvas
       dpr={[1, 1.6]}
-      camera={{ position: [0, 0.7, 9], fov: 34 }}
+      camera={{ position: [0, 0, 6], fov: 34 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
     >
       <PlanetScene />
