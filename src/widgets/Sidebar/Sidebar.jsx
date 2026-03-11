@@ -25,7 +25,7 @@ const menu = {
 
 function Sidebar({ isOpen, showCloseButton, onClose }) {
   const [opened, setOpened] = useState({
-    software: true,
+    software: false,
     automation: false,
     systems: false
   })
