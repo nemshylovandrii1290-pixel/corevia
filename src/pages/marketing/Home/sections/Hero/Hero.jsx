@@ -4,7 +4,30 @@ import './Hero.scss'
 const Hero = () => {
   return (
     <section className="hero">
+      <div className="hero__circuit" aria-hidden="true">
+        <div className="hero__grid" />
+        <div className="hero__glow hero__glow--left" />
+        <div className="hero__glow hero__glow--right" />
+        <div className="hero__stage">
+          <div className="hero__platform">
+            <span className="hero__trace hero__trace--one" />
+            <span className="hero__trace hero__trace--two" />
+            <span className="hero__trace hero__trace--three" />
+          </div>
+          <div className="hero__orbital">
+            <div className="hero__ring hero__ring--outer" />
+            <div className="hero__ring hero__ring--inner" />
+            <div className="hero__sphere">
+              <div className="hero__sphere-core" />
+              <div className="hero__sphere-grid" />
+              <div className="hero__sphere-shine" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="hero__overlay" />
+
       <div className="container hero__content">
         <p className="hero__eyebrow">Corevia</p>
         <h1>Сервіс і розробка для вашого бізнесу та техніки</h1>
@@ -13,10 +36,10 @@ const Hero = () => {
           невеликих застосунків. Усе в одному місці.
         </p>
         <div className="hero__actions">
-          <Link to="/services" className="btn-primary">
+          <Link to="/software/web-applications" className="btn-primary">
             Перейти до послуг
           </Link>
-          <Link to="/contacts" className="btn-secondary">
+          <Link to="/contact" className="btn-secondary">
             Зв&apos;язатися
           </Link>
         </div>
