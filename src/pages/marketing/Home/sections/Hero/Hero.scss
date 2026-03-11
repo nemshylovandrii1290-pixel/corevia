@@ -1,354 +1,141 @@
 ﻿@use '@/styles/mixins' as m;
 
-@keyframes hero-sphere-spin {
-  from {
-    transform: rotateX(72deg) rotateY(0deg);
-  }
-
-  to {
-    transform: rotateX(72deg) rotateY(360deg);
-  }
-}
-
-@keyframes hero-ring-spin {
-  from {
-    transform: translate(-50%, -50%) rotateX(76deg) rotateZ(0deg);
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotateX(76deg) rotateZ(-360deg);
-  }
-}
-
-@keyframes hero-glow-pulse {
-  0%,
-  100% {
-    opacity: 0.32;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.55;
-    transform: scale(1.08);
-  }
-}
-
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
-  overflow: hidden;
-  padding: 110px 0 72px;
+  min-height: 180vh;
   background:
-    radial-gradient(circle at 50% 24%, rgba(76, 220, 255, 0.18), transparent 18%),
-    radial-gradient(circle at 18% 20%, rgba(22, 105, 255, 0.12), transparent 26%),
-    radial-gradient(circle at 82% 26%, rgba(170, 92, 255, 0.1), transparent 22%),
-    linear-gradient(180deg, #040a15 0%, #081121 58%, #0a1323 100%);
-  @include m.flex-container(center, center);
+    radial-gradient(circle at 50% 22%, rgba(34, 208, 255, 0.18), transparent 16%),
+    radial-gradient(circle at 16% 18%, rgba(54, 108, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 84% 22%, rgba(170, 92, 255, 0.12), transparent 20%),
+    linear-gradient(180deg, #030914 0%, #07101d 52%, #091323 100%);
+}
 
-  &__circuit,
-  &__overlay,
-  &__content {
-    position: relative;
-    z-index: 1;
+.hero__viewport {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+}
+
+.hero__scene-wrap {
+  position: absolute;
+  inset: 0;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.hero__scene-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(54, 214, 255, 0.24), transparent 16%),
+    radial-gradient(circle at 50% 54%, rgba(62, 97, 255, 0.14), transparent 22%),
+    linear-gradient(180deg, rgba(5, 12, 24, 0.8), rgba(5, 12, 24, 0.96));
+}
+
+.hero__ambient {
+  position: absolute;
+  inset: auto;
+  border-radius: 999px;
+  filter: blur(48px);
+  opacity: 0.42;
+  pointer-events: none;
+
+  &--left {
+    left: 8%;
+    top: 14%;
+    width: 320px;
+    height: 320px;
+    background: rgba(26, 205, 255, 0.18);
   }
 
-  &__circuit {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    perspective: 1600px;
+  &--right {
+    right: 8%;
+    bottom: 10%;
+    width: 360px;
+    height: 360px;
+    background: rgba(106, 118, 255, 0.16);
+  }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(100vh - var(--header-height) - 110px);
+  padding-bottom: 96px;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  color: #93c5fd;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1.02;
+  margin-bottom: 18px;
+}
+
+.hero__text {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  font-size: 18px;
+  color: #d3d9e8;
+}
+
+.hero__actions {
+  @include m.flex-container(center, center, row, wrap);
+  gap: 12px;
+}
+
+@include m.mq-down(tablet) {
+  .hero {
+    min-height: 160vh;
   }
 
-  &__grid {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(rgba(26, 209, 255, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 209, 255, 0.06) 1px, transparent 1px);
-    background-size: 110px 110px;
-    mask-image: radial-gradient(circle at center, black 52%, transparent 92%);
-    opacity: 0.38;
+  .hero__content {
+    margin-top: calc(100vh - var(--header-height) - 40px);
+    padding-bottom: 72px;
   }
 
-  &__glow {
-    position: absolute;
-    border-radius: 999px;
-    filter: blur(40px);
-    animation: hero-glow-pulse 7s ease-in-out infinite;
+  .hero h1 {
+    font-size: clamp(30px, 7vw, 48px);
+  }
 
+  .hero__text {
+    font-size: 16px;
+  }
+
+  .hero__ambient {
     &--left {
-      left: 14%;
-      top: 16%;
-      width: 300px;
-      height: 300px;
-      background: rgba(27, 196, 255, 0.16);
+      width: 220px;
+      height: 220px;
     }
 
     &--right {
-      right: 12%;
-      bottom: 12%;
-      width: 360px;
-      height: 360px;
-      background: rgba(74, 112, 255, 0.14);
-      animation-delay: 1.5s;
+      width: 240px;
+      height: 240px;
     }
   }
+}
 
-  &__stage {
-    position: absolute;
-    left: 50%;
-    top: 47%;
-    width: min(58vw, 880px);
-    aspect-ratio: 1.18 / 1;
-    transform: translate(-50%, -50%);
+@include m.mq-down(md) {
+  .hero {
+    min-height: 150vh;
   }
 
-  &__platform {
-    position: absolute;
-    inset: auto 3% 3% 3%;
-    height: 38%;
-    border-radius: 54px;
-    background:
-      radial-gradient(circle at 50% 40%, rgba(51, 235, 255, 0.16), transparent 34%),
-      linear-gradient(180deg, rgba(7, 24, 52, 0.42), rgba(8, 17, 34, 0.9)),
-      linear-gradient(90deg, rgba(52, 223, 255, 0.12), rgba(106, 91, 255, 0.1));
-    box-shadow:
-      inset 0 0 0 1px rgba(90, 181, 255, 0.18),
-      0 24px 60px rgba(0, 0, 0, 0.42);
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 14% 6%;
-      border-radius: 28px;
-      background:
-        linear-gradient(rgba(70, 213, 255, 0.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(70, 213, 255, 0.18) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: 0.52;
-    }
+  .hero__viewport {
+    height: calc(100svh - var(--header-height));
   }
 
-  &__trace {
-    position: absolute;
-    height: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, rgba(84, 235, 255, 0.92), transparent);
-    box-shadow: 0 0 14px rgba(84, 235, 255, 0.6);
-
-    &--one {
-      left: 8%;
-      bottom: 34%;
-      width: 44%;
-      transform: rotate(-12deg);
-    }
-
-    &--two {
-      right: 8%;
-      bottom: 44%;
-      width: 38%;
-      transform: rotate(18deg);
-    }
-
-    &--three {
-      left: 24%;
-      bottom: 18%;
-      width: 52%;
-      transform: rotate(6deg);
-    }
-  }
-
-  &__orbital {
-    position: absolute;
-    inset: 0;
-  }
-
-  &__ring {
-    position: absolute;
-    left: 50%;
-    top: 48%;
-    width: 112%;
-    height: 44%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) rotateX(76deg);
-    border: 1px solid rgba(117, 231, 255, 0.2);
-    box-shadow:
-      inset 0 0 24px rgba(46, 211, 255, 0.16),
-      0 0 32px rgba(46, 211, 255, 0.2);
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 10%;
-      border-radius: inherit;
-      border: 2px solid transparent;
-      border-top-color: rgba(63, 226, 255, 0.95);
-      border-bottom-color: rgba(132, 101, 255, 0.82);
-      filter: drop-shadow(0 0 18px rgba(69, 223, 255, 0.4));
-    }
-
-    &--outer {
-      animation: hero-ring-spin 18s linear infinite;
-    }
-
-    &--inner {
-      width: 84%;
-      height: 30%;
-      opacity: 0.38;
-      animation: hero-ring-spin 12s linear infinite reverse;
-    }
-  }
-
-  &__sphere {
-    position: absolute;
-    left: 50%;
-    top: 42%;
-    width: min(38%, 360px);
-    aspect-ratio: 1 / 1;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 32% 28%, rgba(205, 244, 255, 0.92), rgba(40, 206, 255, 0.3) 18%, transparent 36%),
-      radial-gradient(circle at center, rgba(50, 181, 255, 0.3), rgba(7, 26, 52, 0.16) 58%, rgba(5, 17, 34, 0.04) 78%, transparent 100%);
-    box-shadow:
-      0 0 34px rgba(70, 222, 255, 0.4),
-      0 0 120px rgba(70, 222, 255, 0.2),
-      0 18px 44px rgba(0, 0, 0, 0.28);
-    overflow: hidden;
-  }
-
-  &__sphere-core,
-  &__sphere-grid,
-  &__sphere-shine {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-  }
-
-  &__sphere-core {
-    background:
-      radial-gradient(circle at 50% 55%, rgba(68, 231, 255, 0.44), rgba(13, 56, 108, 0.82) 58%, rgba(7, 20, 39, 0.98) 100%);
-  }
-
-  &__sphere-grid {
-    background:
-      linear-gradient(rgba(90, 231, 255, 0.52) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(90, 231, 255, 0.52) 1px, transparent 1px);
-    background-size: 46px 46px;
-    mix-blend-mode: screen;
-    opacity: 0.7;
-    transform: rotateX(72deg);
-    animation: hero-sphere-spin 24s linear infinite;
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border: 1px solid rgba(124, 239, 255, 0.35);
-    }
-
-    &::after {
-      inset: 12%;
-      opacity: 0.8;
-    }
-  }
-
-  &__sphere-shine {
-    background:
-      radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.95), transparent 16%),
-      radial-gradient(circle at 65% 72%, rgba(86, 219, 255, 0.28), transparent 26%);
-    mix-blend-mode: screen;
-  }
-
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 50% 38%, rgba(11, 202, 255, 0.12), transparent 20%),
-      linear-gradient(180deg, rgba(5, 11, 22, 0.48) 0%, rgba(5, 11, 22, 0.18) 42%, rgba(5, 11, 22, 0.62) 100%);
-  }
-
-  &__content {
-    z-index: 1;
-    max-width: 860px;
-    padding-top: min(52vh, 430px);
-    text-align: center;
-  }
-
-  &__eyebrow {
-    color: #93c5fd;
-    margin-bottom: 8px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    font-size: clamp(30px, 6vw, 54px);
-    line-height: 1.05;
-    margin-bottom: 14px;
-  }
-
-  &__text {
-    font-size: 18px;
-    color: #d3d9e8;
-    margin-bottom: 24px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  &__actions {
-    @include m.flex-container(center, center, row, wrap);
-    gap: 12px;
-  }
-
-  @include m.mq-down(tablet) {
-    min-height: auto;
-    padding: 104px 0 64px;
-
-    &__stage {
-      top: 34%;
-      width: min(92vw, 620px);
-      aspect-ratio: 1.12 / 1;
-      transform: translate(-50%, -50%);
-    }
-
-    &__overlay {
-      background:
-        radial-gradient(circle at 50% 30%, rgba(11, 202, 255, 0.12), transparent 18%),
-        linear-gradient(180deg, rgba(6, 13, 26, 0.62) 0%, rgba(6, 13, 26, 0.24) 46%, rgba(6, 13, 26, 0.74) 100%);
-    }
-
-    &__content {
-      max-width: 100%;
-      padding-top: min(54vw, 360px);
-    }
-  }
-
-  @include m.mq-down(md) {
-    padding-top: 96px;
-
-    &__text {
-      font-size: 16px;
-    }
-
-    &__stage {
-      top: 30%;
-      width: min(98vw, 460px);
-      aspect-ratio: 1 / 1.06;
-    }
-
-    &__sphere {
-      width: min(44%, 220px);
-    }
-
-    &__content {
-      padding-top: min(68vw, 310px);
-    }
+  .hero__content {
+    margin-top: calc(100svh - var(--header-height) - 28px);
   }
 }
