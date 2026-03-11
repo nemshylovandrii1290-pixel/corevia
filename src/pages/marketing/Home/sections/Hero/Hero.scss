@@ -37,12 +37,13 @@
   position: relative;
   min-height: calc(100vh - var(--header-height));
   overflow: hidden;
-  padding: 120px 0 80px;
+  padding: 110px 0 72px;
   background:
-    radial-gradient(circle at 20% 20%, rgba(22, 105, 255, 0.16), transparent 28%),
-    radial-gradient(circle at 78% 30%, rgba(0, 225, 255, 0.14), transparent 24%),
-    linear-gradient(180deg, #060d1a 0%, #091427 100%);
-  @include m.flex-container(flex-start, center);
+    radial-gradient(circle at 50% 24%, rgba(76, 220, 255, 0.18), transparent 18%),
+    radial-gradient(circle at 18% 20%, rgba(22, 105, 255, 0.12), transparent 26%),
+    radial-gradient(circle at 82% 26%, rgba(170, 92, 255, 0.1), transparent 22%),
+    linear-gradient(180deg, #040a15 0%, #081121 58%, #0a1323 100%);
+  @include m.flex-container(center, center);
 
   &__circuit,
   &__overlay,
@@ -63,11 +64,11 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(rgba(26, 209, 255, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(26, 209, 255, 0.08) 1px, transparent 1px);
-    background-size: 120px 120px;
-    mask-image: radial-gradient(circle at center, black 42%, transparent 90%);
-    opacity: 0.45;
+      linear-gradient(rgba(26, 209, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 209, 255, 0.06) 1px, transparent 1px);
+    background-size: 110px 110px;
+    mask-image: radial-gradient(circle at center, black 52%, transparent 92%);
+    opacity: 0.38;
   }
 
   &__glow {
@@ -77,54 +78,55 @@
     animation: hero-glow-pulse 7s ease-in-out infinite;
 
     &--left {
-      left: 10%;
-      top: 18%;
-      width: 280px;
-      height: 280px;
-      background: rgba(27, 196, 255, 0.2);
+      left: 14%;
+      top: 16%;
+      width: 300px;
+      height: 300px;
+      background: rgba(27, 196, 255, 0.16);
     }
 
     &--right {
-      right: 8%;
-      bottom: 10%;
-      width: 340px;
-      height: 340px;
-      background: rgba(74, 112, 255, 0.18);
+      right: 12%;
+      bottom: 12%;
+      width: 360px;
+      height: 360px;
+      background: rgba(74, 112, 255, 0.14);
       animation-delay: 1.5s;
     }
   }
 
   &__stage {
     position: absolute;
-    right: clamp(30px, 7vw, 120px);
-    top: 52%;
-    width: min(46vw, 680px);
-    aspect-ratio: 1 / 1;
-    transform: translateY(-50%);
+    left: 50%;
+    top: 47%;
+    width: min(58vw, 880px);
+    aspect-ratio: 1.18 / 1;
+    transform: translate(-50%, -50%);
   }
 
   &__platform {
     position: absolute;
-    inset: auto 2% 6% 2%;
-    height: 34%;
-    border-radius: 40px;
+    inset: auto 3% 3% 3%;
+    height: 38%;
+    border-radius: 54px;
     background:
-      linear-gradient(180deg, rgba(7, 24, 52, 0.5), rgba(8, 17, 34, 0.82)),
-      linear-gradient(90deg, rgba(52, 223, 255, 0.12), rgba(106, 91, 255, 0.08));
+      radial-gradient(circle at 50% 40%, rgba(51, 235, 255, 0.16), transparent 34%),
+      linear-gradient(180deg, rgba(7, 24, 52, 0.42), rgba(8, 17, 34, 0.9)),
+      linear-gradient(90deg, rgba(52, 223, 255, 0.12), rgba(106, 91, 255, 0.1));
     box-shadow:
       inset 0 0 0 1px rgba(90, 181, 255, 0.18),
-      0 24px 60px rgba(0, 0, 0, 0.35);
+      0 24px 60px rgba(0, 0, 0, 0.42);
 
     &::before {
       content: '';
       position: absolute;
-      inset: 16% 6%;
-      border-radius: 24px;
+      inset: 14% 6%;
+      border-radius: 28px;
       background:
-        linear-gradient(rgba(70, 213, 255, 0.16) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(70, 213, 255, 0.16) 1px, transparent 1px);
-      background-size: 44px 44px;
-      opacity: 0.45;
+        linear-gradient(rgba(70, 213, 255, 0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(70, 213, 255, 0.18) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: 0.52;
     }
   }
 
@@ -136,24 +138,24 @@
     box-shadow: 0 0 14px rgba(84, 235, 255, 0.6);
 
     &--one {
-      left: 10%;
-      bottom: 38%;
-      width: 40%;
-      transform: rotate(-14deg);
+      left: 8%;
+      bottom: 34%;
+      width: 44%;
+      transform: rotate(-12deg);
     }
 
     &--two {
-      right: 12%;
-      bottom: 48%;
-      width: 34%;
-      transform: rotate(22deg);
+      right: 8%;
+      bottom: 44%;
+      width: 38%;
+      transform: rotate(18deg);
     }
 
     &--three {
-      left: 28%;
-      bottom: 22%;
-      width: 48%;
-      transform: rotate(8deg);
+      left: 24%;
+      bottom: 18%;
+      width: 52%;
+      transform: rotate(6deg);
     }
   }
 
@@ -165,9 +167,9 @@
   &__ring {
     position: absolute;
     left: 50%;
-    top: 50%;
-    width: 100%;
-    height: 46%;
+    top: 48%;
+    width: 112%;
+    height: 44%;
     border-radius: 50%;
     transform: translate(-50%, -50%) rotateX(76deg);
     border: 1px solid rgba(117, 231, 255, 0.2);
@@ -191,9 +193,9 @@
     }
 
     &--inner {
-      width: 80%;
-      height: 34%;
-      opacity: 0.45;
+      width: 84%;
+      height: 30%;
+      opacity: 0.38;
       animation: hero-ring-spin 12s linear infinite reverse;
     }
   }
@@ -201,8 +203,8 @@
   &__sphere {
     position: absolute;
     left: 50%;
-    top: 48%;
-    width: min(52%, 320px);
+    top: 42%;
+    width: min(38%, 360px);
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -211,7 +213,8 @@
       radial-gradient(circle at center, rgba(50, 181, 255, 0.3), rgba(7, 26, 52, 0.16) 58%, rgba(5, 17, 34, 0.04) 78%, transparent 100%);
     box-shadow:
       0 0 34px rgba(70, 222, 255, 0.4),
-      0 0 120px rgba(70, 222, 255, 0.2);
+      0 0 120px rgba(70, 222, 255, 0.2),
+      0 18px 44px rgba(0, 0, 0, 0.28);
     overflow: hidden;
   }
 
@@ -264,12 +267,16 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: linear-gradient(90deg, rgba(6, 13, 26, 0.92) 0%, rgba(6, 13, 26, 0.7) 36%, rgba(6, 13, 26, 0.18) 100%);
+    background:
+      radial-gradient(circle at 50% 38%, rgba(11, 202, 255, 0.12), transparent 20%),
+      linear-gradient(180deg, rgba(5, 11, 22, 0.48) 0%, rgba(5, 11, 22, 0.18) 42%, rgba(5, 11, 22, 0.62) 100%);
   }
 
   &__content {
     z-index: 1;
-    max-width: 720px;
+    max-width: 860px;
+    padding-top: min(52vh, 430px);
+    text-align: center;
   }
 
   &__eyebrow {
@@ -290,11 +297,13 @@
     font-size: 18px;
     color: #d3d9e8;
     margin-bottom: 24px;
-    max-width: 620px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__actions {
-    @include m.flex-container(flex-start, center, row, wrap);
+    @include m.flex-container(center, center, row, wrap);
     gap: 12px;
   }
 
@@ -303,20 +312,21 @@
     padding: 104px 0 64px;
 
     &__stage {
-      position: relative;
-      right: auto;
-      top: auto;
-      width: min(92vw, 520px);
-      margin: 32px auto 0;
-      transform: none;
+      top: 34%;
+      width: min(92vw, 620px);
+      aspect-ratio: 1.12 / 1;
+      transform: translate(-50%, -50%);
     }
 
     &__overlay {
-      background: linear-gradient(180deg, rgba(6, 13, 26, 0.8) 0%, rgba(6, 13, 26, 0.42) 100%);
+      background:
+        radial-gradient(circle at 50% 30%, rgba(11, 202, 255, 0.12), transparent 18%),
+        linear-gradient(180deg, rgba(6, 13, 26, 0.62) 0%, rgba(6, 13, 26, 0.24) 46%, rgba(6, 13, 26, 0.74) 100%);
     }
 
     &__content {
       max-width: 100%;
+      padding-top: min(54vw, 360px);
     }
   }
 
@@ -328,12 +338,17 @@
     }
 
     &__stage {
-      width: min(96vw, 420px);
-      aspect-ratio: 1 / 1.05;
+      top: 30%;
+      width: min(98vw, 460px);
+      aspect-ratio: 1 / 1.06;
     }
 
     &__sphere {
-      width: min(58%, 240px);
+      width: min(44%, 220px);
+    }
+
+    &__content {
+      padding-top: min(68vw, 310px);
     }
   }
 }
