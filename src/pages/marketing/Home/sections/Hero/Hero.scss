@@ -1,48 +1,39 @@
 ﻿@use '@/styles/mixins' as m;
 
 .hero {
+  width: 100%;
+  min-height: 100vh;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   overflow: hidden;
-  padding: 24px 24px 56px;
+  padding: 0 24px 56px;
   background:
     radial-gradient(circle at 50% 16%, rgba(56, 189, 248, 0.16), transparent 18%),
     radial-gradient(circle at 18% 18%, rgba(59, 130, 246, 0.12), transparent 24%),
     radial-gradient(circle at 82% 20%, rgba(14, 165, 233, 0.12), transparent 20%),
     linear-gradient(180deg, #030712 0%, #07111d 56%, #09131f 100%);
-
-  > .container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
 }
 
 .hero__scene {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
-  width: min(100%, 1180px);
-  height: 60vh;
-  min-height: 360px;
 
   canvas {
     width: 100% !important;
     height: 100% !important;
+    display: block;
   }
 }
 
 .hero__scene-fallback {
   position: absolute;
   inset: 0;
-  border-radius: 32px;
   background:
-    radial-gradient(circle at 50% 28%, rgba(56, 189, 248, 0.28), transparent 14%),
-    radial-gradient(circle at 50% 30%, rgba(14, 165, 233, 0.14), transparent 24%),
-    linear-gradient(180deg, rgba(3, 7, 18, 0.86), rgba(5, 11, 20, 0.98));
+    radial-gradient(circle at 50% 34%, rgba(56, 189, 248, 0.3), transparent 14%),
+    radial-gradient(circle at 50% 36%, rgba(14, 165, 233, 0.16), transparent 24%),
+    linear-gradient(180deg, rgba(3, 7, 18, 0.78), rgba(5, 11, 20, 0.96));
 }
 
 .hero__ambient {
@@ -53,8 +44,8 @@
   pointer-events: none;
 
   &--left {
-    top: 10%;
-    left: 12%;
+    top: 18%;
+    left: 10%;
     width: 260px;
     height: 260px;
     background: rgba(34, 211, 238, 0.18);
@@ -62,7 +53,7 @@
 
   &--right {
     top: 14%;
-    right: 12%;
+    right: 10%;
     width: 300px;
     height: 300px;
     background: rgba(59, 130, 246, 0.16);
@@ -71,9 +62,11 @@
 
 .hero__content {
   position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: 40px auto 0;
+  z-index: 2;
+  width: min(100%, 700px);
+  margin-top: 60vh;
+  margin-left: auto;
+  margin-right: auto;
   padding: 28px 24px 0;
   text-align: center;
 
@@ -120,17 +113,11 @@
 
 @include m.mq-down(tablet) {
   .hero {
-    padding-top: 16px;
-    padding-bottom: 40px;
-  }
-
-  .hero__scene {
-    height: 54vh;
-    min-height: 300px;
+    padding: 0 16px 40px;
   }
 
   .hero__content {
-    margin-top: 28px;
+    margin-top: 58vh;
     padding-inline: 16px;
   }
 
@@ -157,17 +144,14 @@
 
 @include m.mq-down(md) {
   .hero {
-    height: 100svh;
+    min-height: 100svh;
     padding-inline: 16px;
   }
 
-  .hero__scene {
-    height: 48vh;
-    min-height: 260px;
-  }
-
   .hero__content {
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 56vh;
+    padding-inline: 12px;
 
     &::before {
       inset: -20px -12px -16px;
